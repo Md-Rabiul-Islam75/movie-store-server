@@ -39,12 +39,49 @@ async function run() {
       res.send(result);
     })
 
+
+  
+    app.get('/movies/:id', async(req, res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await movieCollection.findOne(query);
+      res.send(result);
+    })
+
+
+
     app.post('/movies', async(req, res)=>{
         const newMovie = req.body;
         console.log(newMovie);
         const result = await movieCollection.insertOne(newMovie);
         res.send(result);
     })
+
+
+    app.put('/movies/:id', async(req, res) => {
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)}
+      const options = {upsert: true};
+      const updatedMovie = req.body;
+      console.log(updatedMovie);
+
+      const movie = {
+        $set: {
+           movieTitle: updatedMovie.movieTitle,
+          moviePoster: updatedMovie.moviePoster,
+          movieGenre: updatedMovie.movieGenre,
+          movieDuration: updatedMovie.movieDuration,
+           movieReleaseyear: updatedMovie.movieReleaseyear,
+           movieRating: updatedMovie.movieRating,
+           movieDetails: updatedMovie. movieDetails
+        }
+      }
+
+      const result = await movieCollection.updateOne(filter, movie, options);
+      res.send(result);
+    })
+
+
 
     app.delete('/movies/:id', async (req, res) => {
       const id = req.params.id;
