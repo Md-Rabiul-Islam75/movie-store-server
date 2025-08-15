@@ -33,7 +33,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
+   
     await client.connect();
 
     const movieCollection = client.db('movieDB').collection('movie');
@@ -66,6 +66,7 @@ async function run() {
 
 
     app.put('/movies/:id', async(req, res) => {
+
       const id = req.params.id;
       const filter = {_id: new ObjectId(id)}
       const options = {upsert: true};
@@ -74,7 +75,7 @@ async function run() {
 
       const movie = {
         $set: {
-           movieTitle: updatedMovie.movieTitle,
+          movieTitle: updatedMovie.movieTitle,
           moviePoster: updatedMovie.moviePoster,
           movieGenre: updatedMovie.movieGenre,
           movieDuration: updatedMovie.movieDuration,
