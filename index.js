@@ -79,9 +79,9 @@ async function run() {
           moviePoster: updatedMovie.moviePoster,
           movieGenre: updatedMovie.movieGenre,
           movieDuration: updatedMovie.movieDuration,
-           movieReleaseyear: updatedMovie.movieReleaseyear,
-           movieRating: updatedMovie.movieRating,
-           movieDetails: updatedMovie. movieDetails
+          movieReleaseyear: updatedMovie.movieReleaseyear,
+          movieRating: updatedMovie.movieRating,
+          movieDetails: updatedMovie. movieDetails
         }
       }
 
@@ -122,8 +122,5 @@ app.get('/', (req, res) => {
     res.send('Movie making server is running')
 })
 
-// app.listen(port, () => {
-//     console.log(`Movie Server is running on port: ${port}`)
-// })
 
 module.exports = app;
